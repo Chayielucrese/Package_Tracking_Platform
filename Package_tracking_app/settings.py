@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Package_tracking_platform',
+    'Package_Tracking_Platform1',
 ]
 
 MIDDLEWARE = [
@@ -77,12 +78,13 @@ WSGI_APPLICATION = 'Package_tracking_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'packagetracking',
+        'NAME': 'packagetrack',
         'USER': 'postgres',
-        'PASSWORD': 'alban',
+        'PASSWORD': 'Jesuis1mignion',
+        'HOST': 'localhost',  # Set to your database host
+        'PORT': '5432',  # Default PostgreSQL port
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

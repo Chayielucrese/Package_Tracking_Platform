@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('package_tracking_platform/', include('Package_tracking_platform.urls')) 
+    path('package_tracking_platform/', include('Package_tracking_platform.urls')),
+    path('package_tracking_platform1/', include('Package_Tracking_Platform1.urls')),
 ]
