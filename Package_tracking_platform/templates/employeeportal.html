@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Information</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2>Package Information</h2>
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPackageModal">
+            Add Package
+        </button>
+        {% for message in messages%}
+        <h5>{{ message }}</h5>
+        {% endfor %}
+        <form method="POST" action="{% url 'confirmpackage' %}">
+            {% csrf_token %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Tracking ID</th>
+                    <th>Client Name</th>
+                    <th>Destination</th>
+                    <th>Confirm package arrival</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for package in packages %}
+                <input hidden value="{{ package.id }}" name="package"/>
+                <input hidden value="{{ employee_id }}" name="employee"/>
+                <tr>
+                    <td>{{ package.tracking_id }}</td>
+                    <td>{{ package.client.name }}</td>
+                    <td>{{ package.destination }}</td>
+                    <td>{{ package.warehousearrival }}</td>
+                    <td><button type="submit">Scan</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </form>
+    </div>
+
+    <div class="modal fade" id="addPackageModal" tabindex="-1" aria-labelledby="addPackageModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPackageModalLabel">Add Package</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                   
+                    <form id="addPackageForm" method="post" action="{% url 'package_registration' %}">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="clientName" class="form-label">Client Name</label>
+                            <select class="form-select" id="clientName" name="client_name">
+                                <option value="" selected disabled>Select Client</option>
+                                {% for client in clients %}
+                                    <option value="{{ client.id }}">{{ client.email }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="weight" class="form-label">Weight</label>
+                            <input type="number" class="form-control" id="weight" name="weight">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="destination" class="form-label">Destination</label>
+                            <input type="text" class="form-control" id="destination" name="destination">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="price" name="price">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
