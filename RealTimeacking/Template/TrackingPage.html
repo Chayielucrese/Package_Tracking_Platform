@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Order</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: orange;
+      padding: 2em;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      margin-top: 1em;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5em;
+      margin-top: 0.5em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 0.75em 1.5em;
+      margin-top: 1em;
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 1em;
+      color: #555;
+    }
+  </style>
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Track Your Order</h1>
+    <form id="trackOrderForm">
+      <input type="text" id="orderNumber" placeholder="Enter your order number" required>
+      <button type="submit" id="trackOrderButton" disabled>Track Order</button>
+    </form>
+    <div class="result" id="result">
+      Your order is on its way!
+    </div>
+  </div>
+
+  <script>
+    const trackOrderForm = document.getElementById('trackOrderForm');
+    const orderNumberInput = document.getElementById('orderNumber');
+    const trackOrderButton = document.getElementById('trackOrderButton');
+    const resultDiv = document.getElementById('result');
+
+    // Enable the button when the input field has a value
+    orderNumberInput.addEventListener('input', function() {
+      trackOrderButton.disabled = orderNumberInput.value.trim() === '';
+    });
+
+    trackOrderForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from submitting the default way
+
+      const orderNumber = orderNumberInput.value.trim();
+
+      if (orderNumber) {
+        // Perform tracking logic or redirect to the home page
+        window.location.href = 'home.html';
+      } else {
+        // Display an error message
+        resultDiv.textContent = 'Please enter a valid order number.';
+      }
+    });
+  </script>
+</body>
+</html>

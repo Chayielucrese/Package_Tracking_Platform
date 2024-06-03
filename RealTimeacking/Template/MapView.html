@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Package Tracking</title>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9Ey1UbpQB35vikqQ5Ir00cZfoSKXwGSc&callback=initMap"
+      async
+      defer
+    ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9Ey1UbpQB35vikqQ5Ir00cZfoSKXwGSc&callback=initMap&libraries=directions" async defer></script>
+    <style>
+      #map {
+        height: 700px;
+        width: 100%;
+        margin-top: 80px;
+        margin-left: 5px;
+      }
+      #search-box {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 0.5;
+        background-color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        height: 100px;
+        width: 100%;
+      }
+      input,
+      #warehouse-select {
+        width: 80%;
+        height: 70px;
+        background-color: rgb(208, 204, 204);
+        margin-left: 70px;
+        border-radius: 17px;
+        border: none;
+      }
+      input::placeholder #warehouse-select::placeholder {
+        font-size: 20px;
+        padding-left: 20px;
+      }
+      input:focus {
+        font-size: 20px;
+        cursor: pointer;
+        padding-left: 5px;
+      }
+
+      button {
+        height: 50px;
+        width: 10%;
+        border-radius: 20px;
+        background-color: orange;
+        font-size: 20px;
+        border: none;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="search-box">
+      <select id="warehouse-select">
+        <option value="">Select a warehouse</option>
+        <option value="Warehouse A">Warehouse A</option>
+        <option value="Warehouse B">Warehouse B</option>
+        <option value="Warehouse C">Warehouse C</option>
+        <option value="Warehouse D">Warehouse D</option>
+        <option value="Warehouse E">Warehouse E</option>
+        <option value="Warehouse F">Warehouse F</option>
+        <option value="Warehouse G">Warehouse G</option>
+        <option value="Warehouse H">Warehouse H</option>
+      </select>
+      <button onclick="searchWarehouse()">Search</button>
+    </div>
+    <br /><br />
+    <div id="map"></div>
+    <script>
+      var map;
+      var warehouses = [
+        { name: "Warehouse A", location: { lat: 4.155, lng: 9.2318 } }, // Buea
+        { name: "Warehouse B", location: { lat: 4.089, lng: 9.3683 } }, // Tiko
+        { name: "Warehouse C", location: { lat: 5.9549, lng: 10.1593 } }, // Limbe
+        { name: "Warehouse D", location: { lat: 5.1616, lng: 10.8804 } }, // Bafang
+        { name: "Warehouse E", location: { lat: 5.9616, lng: 10.159 } }, // Bamenda
+        { name: "Warehouse F", location: { lat: 4.0479, lng: 9.7085 } }, // Litoral
+        { name: "Warehouse G", location: { lat: 7.338, lng: 13.5846 } }, // Ngaoundéré
+        { name: "Warehouse J", location: { lat: 6.6204, lng: 12.5904 } }, // Adamawa
+        { name: "Warehouse K", location: { lat: 10.5957, lng: 14.3247 } }, // Maroua
+        { name: "Warehouse L", location: { lat: 2.9333, lng: 11.15 } }, // South (Ebolowa)
+        { name: "Warehouse M", location: { lat: 4.5773, lng: 13.6845 } }, // East (Bertoua)
+      ];
+
+      function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 6,
+    center: { lat: 4.0, lng: 12.0 },
+  });
+
+  directionsService = new google.maps.DirectionsService();
+  directionsRenderer = new google.maps.DirectionsRenderer({
+    map: map,
+  });
+
+  // Add markers for each warehouse
+  warehouses.forEach(function (warehouse) {
+    var marker = new google.maps.Marker({
+      position: warehouse.location,
+      map: map,
+      title: warehouse.name,
+    });
+  });
+}
+
+function searchWarehouse() {
+  var searchTerm = document.getElementById("warehouse-select").value;
+  if (!searchTerm) {
+    alert("Please select a warehouse.");
+    return;
+  }
+  var foundWarehouse = warehouses.find(function (warehouse) {
+    return warehouse.name === searchTerm;
+  });
+
+  if (foundWarehouse) {
+    map.setCenter(foundWarehouse.location);
+    map.setZoom(10);
+
+    // Display the route on the map
+    displayRoute(order1.order_src_lat, order1.order_src_lng, order1.order_des_lat, order1.order_des_lng);
+  } else {
+    alert("Warehouse not found!");
+  }
+}
+
+function displayRoute(srcLat, srcLng, desLat, desLng) {
+  var request = {
+    origin: { lat: srcLat, lng: srcLng },
+    destination: { lat: desLat, lng: desLng },
+    travelMode: google.maps.TravelMode.DRIVING,
+  };
+
+  directionsService.route(request, function (result, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsRenderer.setDirections(result);
+    } else {
+      alert("Directions request failed due to " + status);
+    }
+  });
+}
+
+// Example usage
+var order1 = {
+  order_src_lat: 4.155,
+  order_src_lng: 9.2318, 
+  order_des_lat: 5.1616,
+  order_des_lng: 10.8804, 
+};
+
+displayRoute(order1.order_src_lat, order1.order_src_lng, order1.order_des_lat, order1.order_des_lng);
+
+    </script>
+  </body>
+</html>
