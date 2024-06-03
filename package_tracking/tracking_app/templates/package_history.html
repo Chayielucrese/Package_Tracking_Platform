@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Package History</title>
+</head>
+<body>
+    <h1>Package History for {{ package.name }}</h1>
+    <p>Current Location: {{ package.current_location }}</p>
+    <h2>Scans:</h2>
+    <ul>
+        {% for scan in scans %}
+        <li>{{ scan.scan_date }} - {{ scan.warehouse.name }} by {{ scan.employee.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

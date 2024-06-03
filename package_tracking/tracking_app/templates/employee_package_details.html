@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Package Details</title>
+</head>
+<body>
+    <h1>Package Details for {{ package.name }}</h1>
+    <p>Current Location: {{ package.current_location }}</p>
+    <a href="{% url 'scan_package' package.id %}">
+        <button>Scan Package</button>
+    </a>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Package</title>
+</head>
+<body>
+    <h1>Search Package</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="tracking_id">Tracking ID:</label>
+        <input type="text" id="tracking_id" name="tracking_id">
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>

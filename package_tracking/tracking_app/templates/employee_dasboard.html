@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
+</head>
+<body>
+    <h1>Packages to be Scanned</h1>
+    <ul>
+        {% for package in packages %}
+        <li>{{ package.name }} - <a href="{% url 'scan_package' package.id %}">Scan</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Package Details</title>
+</head>
+<body>
+    <h1>Package Details</h1>
+    <p>Order: {{ order.tracking_id }}</p>
+    <p>Original Location: {{ order.original_location }}</p>
+    <p>Destination: {{ order.destination }}</p>
+    <h2>Packages:</h2>
+    <ul>
+        {% for package in packages %}
+        <li>{{ package.name }} - <a href="{% url 'package_details' package.id %}">Details</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <h2>Orders</h2>
+    <ul>
+        {% for order in orders %}
+        <li>{{ order.tracking_id }} - <a href="{% url 'order_details' order.id %}">Details</a></li>
+        {% endfor %}
+    </ul>
+    <h2>Packages</h2>
+    <ul>
+        {% for package in packages %}
+        <li>{{ package.name }} - <a href="{% url 'package_details' package.id %}">Details</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
