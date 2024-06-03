@@ -2,3 +2,7 @@ asgiref==3.8.1
 Django==5.0.6
 sqlparse==0.5.0
 tzdata==2024.1
+<<<<<<< HEAD
+=======
+psycopg2
+>>>>>>> 93b4b2575ca0625f178face99cb5401f51dd5f25
