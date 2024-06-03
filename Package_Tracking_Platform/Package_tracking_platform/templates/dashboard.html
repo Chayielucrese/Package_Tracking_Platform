@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipping Company Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    /* Custom styles here */
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Shipping Company Dashboard</a>
+    <!-- Add navigation links and dropdowns here -->
+  </nav>
+
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Shipment Overview</h5>
+            <p class="card-text">Total Employees: <span id="total-shipments">0</span></p>
+            <p class="card-text">Total Customers: <span id="total-shipments">0</span></p>
+            <p class="card-text">Packages Shipped: <span id="packages-shipped">0</span></p>
+            <p class="card-text">Packages Delivered: <span id="packages-delivered">0</span></p>
+            <p class="card-text">Packages in Transit: <span id="packages-in-transit">0</span></p>
+            <!-- Add charts or graphs here -->
+          </div>
+        </div>
+
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">Employee Performance</h5>
+            <p class="card-text">Top Performers:</p>
+            <ul class="list-group" id="top-performers">
+              <!-- Add top performers list items dynamically -->
+            </ul>
+          </div>
+        </div>
+
+        
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">Delivery Performance by Region</h5>
+            <div id="region-chart" style="height: 300px;"></div>
+            
+          </div>
+        </div>
+
+        <!-- Add other main content here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.26.3/dist/apexcharts.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  
+</body>
+</html>
