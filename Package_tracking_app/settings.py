@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Package_tracking_platform',
     'Package_Tracking_Platform1',
+    'Package_tracking_app',
 ]
 
 MIDDLEWARE = [
