@@ -25,4 +25,12 @@ Python 3.x
 PostgreSQL
 pip
 
+Usage
+Client:
+
+Place orders and track packages from the client interface.
+Employee:
+
+Log in to scan packages and update their locations.
+
 Note: Malfortunatelly for us well could not merge all the branches and make the project fully functional.
